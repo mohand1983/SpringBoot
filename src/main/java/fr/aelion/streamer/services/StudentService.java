@@ -1,6 +1,7 @@
 package fr.aelion.streamer.services;
 
 import fr.aelion.streamer.entities.Student;
+import fr.aelion.streamer.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 public class StudentService {
     @Autowired
     private JpaRepository repository;
+    private StudentRepository studentRepository;
     public List<Student> findAll(){
         return repository.findAll();
     }
@@ -18,4 +20,9 @@ public class StudentService {
         student=(Student) repository.save(student);
         return student;
     }
+    public List<Student> findByIdLastNameFirstNameEmail(Student student ){
+
+        return this.studentRepository.findByIdLastNameFirstNameEmail(student);
+    }
 }
+

@@ -15,7 +15,7 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-    @GetMapping
+    @GetMapping()
     @CrossOrigin
     public List<Student> findAll(){
 
@@ -33,5 +33,12 @@ public class StudentController {
     public ResponseEntity<?> add(@RequestBody Student student){
 
         return ResponseEntity.created(null).body(studentService.add(student));
+    }
+
+    @PatchMapping("/test")
+    @CrossOrigin
+    public List<Student> findByIdLastNameFirstNameEmail(Student student){
+
+        return studentService.findByIdLastNameFirstNameEmail(student);
     }
 }
