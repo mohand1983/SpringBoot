@@ -1,14 +1,14 @@
 package fr.aelion.streamer.controllers;
 
+import fr.aelion.streamer.dto.SimpleStudentDto;
 import fr.aelion.streamer.entities.Student;
 import fr.aelion.streamer.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/students")// http://127.0.0.1:8080/api/v1/students
@@ -21,7 +21,11 @@ public class StudentController {
 
         return studentService.findAll();
     }
-
+    @GetMapping("simple")
+    @CrossOrigin
+    public List<SimpleStudentDto> findAllSimpleStudent() {
+        return this.studentService.findSimpleStudents();
+    }
     /**
      * POST a new student
      * uri: POST http://127.0.0.1:5000/api/v1/students
@@ -34,11 +38,26 @@ public class StudentController {
 
         return ResponseEntity.created(null).body(studentService.add(student));
     }
-
-    @PatchMapping("/test")
+    @GetMapping("/{id}")
     @CrossOrigin
-    public List<Student> findByIdLastNameFirstNameEmail(Student student){
+    public Optional<Optional<Student>> findOne(@PathVariable("id") int id) {
+        return Optional.ofNullable(this.studentService.findById(id));
+    }
+    @PostMapping("/create")
+    @CrossOrigin
+    public Student createStudent(@RequestBody Student studentToCreate) {
+        return this.studentService.create(studentToCreate);
+    }
 
-        return studentService.findByIdLastNameFirstNameEmail(student);
+    @PutMapping("/update")
+    @CrossOrigin
+    public Student updateStudent(@RequestBody Student updateStudent) {
+        return this.studentService.update(updateStudent);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @CrossOrigin
+    public void delete(@PathVariable("id") int studentId) {
+        this.studentService.delete(studentId);
     }
 }
