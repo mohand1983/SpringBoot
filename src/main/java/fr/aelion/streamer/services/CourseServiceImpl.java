@@ -23,13 +23,10 @@ public class CourseServiceImpl implements  CourseService<Course> {
                     fullCourseDto.setTitle(c.getTitle());
                     fullCourseDto.setCreatedAt(c.getCreatedAt());
                     fullCourseDto.setUpdatedAt(c.getUpdatedAt());
-                    fullCourseDto.setObjective(c.getObjective());
                     //make as many moduleDto as needed
                     var modules= c.getModules();
                     for(var module : modules){
-                        var moduleDto= new ModuleDto();
                         fullCourseDto.addModule(module);
-
                     }
                     return fullCourseDto;
                 })

@@ -19,9 +19,9 @@ public class FullCourseDto {
     private Set<ModuleDto> modules=new HashSet<>();
     public void addModule(Module module){
         var moduleDto=new ModuleDto();
-        moduleDto.setId(moduleDto.getId());
-        moduleDto.setName(moduleDto.getName());
-        moduleDto.setObjective(moduleDto.getObjective());
+        moduleDto.setId(module.getId());
+        moduleDto.setName(module.getName());
+        moduleDto.setObjective(module.getObjective());
         this.modules.add(moduleDto);
     }
 
