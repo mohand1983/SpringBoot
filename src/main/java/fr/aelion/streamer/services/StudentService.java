@@ -1,8 +1,10 @@
 package fr.aelion.streamer.services;
 
+import fr.aelion.streamer.dto.AddStudentDto;
 import fr.aelion.streamer.dto.SimpleStudentDto;
 import fr.aelion.streamer.entities.Student;
 import fr.aelion.streamer.repositories.StudentRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
 public class StudentService {
     @Autowired
     private StudentRepository repository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     public List<Student> findAll() {
         return repository.findAll();
@@ -33,10 +37,21 @@ public class StudentService {
                    return simpleStudent;
                }).collect(Collectors.toList());
     }
-    public Student add(Student student) {
-        student = (Student) repository.save(student);
-        return student;
+    public Student add(AddStudentDto student) {
+        Student newStudent= modelMapper.map(student, Student.class);
+        newStudent = (Student) repository.save(newStudent);
+        return newStudent;
     }
+    /*
+    public Student add(Student student) throws Exception {
+       Student anyStudent = repository.findByEmail(student.getEmail());
+           if (anyStudent != null) {
+                   throw new Exception("Student already exists");
+                       }
+                       student = (Student) repository.save(student);
+                       return student;
+                       }
+     */
 
     public Student create(Student studentToCreate) {
         return this.repository.save(studentToCreate);
