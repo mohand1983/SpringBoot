@@ -75,6 +75,15 @@ public class StudentService {
     public Student update(Student updatedstudent) {
         return this.repository.save(updatedstudent);
     }
+    /*
+    public void update(Student student) throws Exception {
+        try {
+            repository.save(student);
+        } catch(Exception e) {
+            throw new Exception("Something went wrong while updating Student");
+        }
+    }
+     */
 
     public Page<Student> findAll(Pageable pageable) {
         return this.repository.findAll(pageable);
@@ -83,9 +92,14 @@ public class StudentService {
     public Optional<Student> findById(int id) {
         return this.repository.findById(id);
     }
-
+    public Student findOne(int id){
+        return this.repository.findById(id)
+                .map(s->s)
+                .orElseThrow();
+    }
     public void delete(int id) {
         this.repository.deleteById(id);
     }
+
 }
 

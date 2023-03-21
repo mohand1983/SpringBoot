@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -53,7 +54,9 @@ public class StudentController {
     @GetMapping("/{id}")
     @CrossOrigin
     public Optional<Optional<Student>> findOne(@PathVariable("id") int id) {
-        return Optional.ofNullable(this.studentService.findById(id));
+
+            return Optional.ofNullable(this.studentService.findById(id));
+
     }
     @PostMapping("/create")
     @CrossOrigin
@@ -61,7 +64,8 @@ public class StudentController {
         return this.studentService.create(student);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @CrossOrigin
     public Student updateStudent(@RequestBody Student updateStudent) {
         return this.studentService.update(updateStudent);

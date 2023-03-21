@@ -10,7 +10,7 @@ public class AddStudentDto {
     @NotBlank(message = "Last name can not be null")
     private String lastName;
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "Email cannot be null")
     @Email
     private String email;
 
