@@ -71,7 +71,7 @@ public class StudentController {
         return this.studentService.update(updateStudent);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @CrossOrigin
     public void delete(@PathVariable("id") int studentId) {
         this.studentService.delete(studentId);
