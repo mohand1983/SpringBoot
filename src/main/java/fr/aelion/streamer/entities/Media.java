@@ -23,12 +23,13 @@ public class Media {
     private LocalDate created_at;
     @Column(nullable = false)
     private String url;
-    /*@ManyToOne
-    @JoinColumn(name="typeMedia_id")
-    private TypeMedia typeMedia;*/
     @ManyToOne
     @JoinColumn(name="module_id")
     private Module module;
+
+    @OneToOne
+    @JoinColumn(name="type_media_id")
+    private TypeMedia typeMedia;
 
 
 }
