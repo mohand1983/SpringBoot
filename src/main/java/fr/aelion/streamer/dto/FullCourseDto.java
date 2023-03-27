@@ -17,12 +17,12 @@ public class FullCourseDto {
     private LocalDate updatedAt;
     private String objective;
     private Set<ModuleDto> modules=new HashSet<>();
-    public void addModule(Module module){
-        var moduleDto=new ModuleDto();
+    public void addModule(ModuleDto module){
+       /* var moduleDto=new ModuleDto();
         moduleDto.setId(module.getId());
         moduleDto.setName(module.getName());
-        moduleDto.setObjective(module.getObjective());
-        this.modules.add(moduleDto);
+        moduleDto.setObjective(module.getObjective());*/
+        this.modules.add(module);
     }
 
 }

@@ -1,6 +1,7 @@
 package fr.aelion.streamer.services;
 
 import fr.aelion.streamer.dto.FullCourseDto;
+import fr.aelion.streamer.dto.MediaDto;
 import fr.aelion.streamer.dto.ModuleDto;
 import fr.aelion.streamer.entities.Course;
 import fr.aelion.streamer.repositories.CourseRepository;
@@ -26,7 +27,19 @@ public class CourseServiceImpl implements  CourseService<Course> {
                     //make as many moduleDto as needed
                     var modules= c.getModules();
                     for(var module : modules){
-                        fullCourseDto.addModule(module);
+                        ModuleDto moduleDto=new ModuleDto();
+                        moduleDto.setId(module.getId());
+                        moduleDto.setName(module.getName());
+                        moduleDto.setObjective(module.getObjective());
+                        for (var media : module.getMedias()){
+                            MediaDto mediaDto = new MediaDto();
+                            mediaDto.setId(media.getId());
+                            mediaDto.setTitle(media.getTitle());
+                            mediaDto.setDuration(media.getDuration());
+                            moduleDto.addMediaDto(mediaDto);
+
+                        }
+                        fullCourseDto.addModule(moduleDto);
                     }
                     return fullCourseDto;
                 })
