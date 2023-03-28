@@ -1,6 +1,5 @@
 package fr.aelion.streamer.services;
 
-import fr.aelion.streamer.dto.AddCourseDto;
 import fr.aelion.streamer.dto.FullCourseDto;
 
 import java.util.List;

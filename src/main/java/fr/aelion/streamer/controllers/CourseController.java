@@ -1,14 +1,8 @@
 package fr.aelion.streamer.controllers;
 
-import fr.aelion.streamer.dto.AddCourseDto;
-import fr.aelion.streamer.dto.AddStudentDto;
 import fr.aelion.streamer.dto.FullCourseDto;
 import fr.aelion.streamer.entities.Course;
-import fr.aelion.streamer.entities.Student;
 import fr.aelion.streamer.services.CourseService;
-import fr.aelion.streamer.services.CourseServiceImpl;
-import fr.aelion.streamer.services.exceptions.EmailAlreadyExistsException;
-import fr.aelion.streamer.services.exceptions.LoginAlreadyExistsException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
