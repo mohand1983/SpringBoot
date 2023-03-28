@@ -36,6 +36,8 @@ public class CourseServiceImpl implements  CourseService<Course> {
                             mediaDto.setId(media.getId());
                             mediaDto.setTitle(media.getTitle());
                             mediaDto.setDuration(media.getDuration());
+
+                            mediaDto.addTypeMediaDto(media.getTypeMedia());
                             moduleDto.addMediaDto(mediaDto);
 
                         }

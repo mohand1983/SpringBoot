@@ -1,5 +1,6 @@
 package fr.aelion.streamer.entities;
 
+import fr.aelion.streamer.dto.TypeMediaDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,5 @@ public class Media {
     @OneToOne
     @JoinColumn(name="type_media_id")
     private TypeMedia typeMedia;
-
 
 }
