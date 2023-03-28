@@ -31,12 +31,13 @@ public class CourseServiceImpl implements  CourseService<Course> {
                         moduleDto.setId(module.getId());
                         moduleDto.setName(module.getName());
                         moduleDto.setObjective(module.getObjective());
+                        // media of modules
                         for (var media : module.getMedias()){
                             MediaDto mediaDto = new MediaDto();
                             mediaDto.setId(media.getId());
                             mediaDto.setTitle(media.getTitle());
                             mediaDto.setDuration(media.getDuration());
-
+                            // media type
                             mediaDto.addTypeMediaDto(media.getTypeMedia());
                             moduleDto.addMediaDto(mediaDto);
 
