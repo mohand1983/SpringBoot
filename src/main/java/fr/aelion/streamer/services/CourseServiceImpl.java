@@ -1,10 +1,12 @@
 package fr.aelion.streamer.services;
 
-import fr.aelion.streamer.dto.FullCourseDto;
-import fr.aelion.streamer.dto.MediaDto;
-import fr.aelion.streamer.dto.ModuleDto;
+import fr.aelion.streamer.dto.*;
 import fr.aelion.streamer.entities.Course;
+import fr.aelion.streamer.entities.Student;
 import fr.aelion.streamer.repositories.CourseRepository;
+import fr.aelion.streamer.services.exceptions.EmailAlreadyExistsException;
+import fr.aelion.streamer.services.exceptions.LoginAlreadyExistsException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 public class CourseServiceImpl implements  CourseService<Course> {
     @Autowired
     private CourseRepository repository;
+    @Autowired
+    private ModelMapper modelMapper;
     public List<FullCourseDto> findAll(){
         return repository.findAll()
                 .stream()
@@ -47,5 +51,12 @@ public class CourseServiceImpl implements  CourseService<Course> {
                     return fullCourseDto;
                 })
                 .collect(Collectors.toList());
+    }
+
+    public Course add(FullCourseDto course){
+        Course newCourse = modelMapper.map(course, Course.class);
+        newCourse = (Course) repository.save(newCourse);
+
+        return newCourse;
     }
 }
