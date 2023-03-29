@@ -10,5 +10,5 @@ public interface CourseService<Course> {
     Course add(FullCourseDto course);
 
 
-
+    void delete(int courseId);
 }

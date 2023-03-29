@@ -59,4 +59,11 @@ public class CourseServiceImpl implements  CourseService<Course> {
 
         return newCourse;
     }
+
+    //Delete method
+
+    public void delete(int id) {
+        this.repository.deleteById(id);
+    }
+
 }

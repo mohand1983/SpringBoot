@@ -2,6 +2,7 @@ package fr.aelion.streamer.controllers;
 
 import fr.aelion.streamer.dto.FullCourseDto;
 import fr.aelion.streamer.entities.Course;
+import fr.aelion.streamer.repositories.CourseRepository;
 import fr.aelion.streamer.services.CourseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.List;
 public class CourseController {
     @Autowired
     private CourseService service;
+    private CourseRepository courseRepository;
     @GetMapping
     @CrossOrigin
     public List<FullCourseDto> findAll(){
@@ -32,5 +34,13 @@ public class CourseController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
+    }
+
+    //delete course
+
+    @DeleteMapping("/{id}")
+    @CrossOrigin
+    public void delete(@PathVariable("id") int courseId) {
+        this.service.delete(courseId);
     }
 }

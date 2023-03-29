@@ -16,7 +16,10 @@ public class Module {
     @Column(nullable = false)
     private String name;
     private String objective;
-    @ManyToOne
+    @ManyToOne(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    } )
     @JoinColumn(name="course_id")
     private Course course;
     @OneToMany(mappedBy = "module")

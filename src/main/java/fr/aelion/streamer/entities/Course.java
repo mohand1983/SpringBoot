@@ -22,6 +22,6 @@ public class Course {
     private LocalDate createdAt;
     private LocalDate updatedAt;
     private String objective;
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Module> modules;
 }
