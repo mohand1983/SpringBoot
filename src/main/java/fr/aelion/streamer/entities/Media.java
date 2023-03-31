@@ -29,7 +29,7 @@ public class Media {
     private Module module;
 
     @OneToOne
-    @JoinColumn(name="type_media_id")
+    @JoinColumn(name="type_media_id", nullable = false)
     private TypeMedia typeMedia;
 
 }

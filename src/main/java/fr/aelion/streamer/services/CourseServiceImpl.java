@@ -1,15 +1,10 @@
 package fr.aelion.streamer.services;
-
 import fr.aelion.streamer.dto.*;
 import fr.aelion.streamer.entities.Course;
-import fr.aelion.streamer.entities.Student;
 import fr.aelion.streamer.repositories.CourseRepository;
-import fr.aelion.streamer.services.exceptions.EmailAlreadyExistsException;
-import fr.aelion.streamer.services.exceptions.LoginAlreadyExistsException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +18,10 @@ public class CourseServiceImpl implements  CourseService<Course> {
         return repository.findAll()
                 .stream()
                 .map(c->{
+                    /*
+                    ModelMapper modelMapper = new ModelMapper();
+                    OrderDTO dto = modelMapper.map(order, OrderDTO.class);
+                    * */
                     FullCourseDto fullCourseDto= new FullCourseDto();
                     fullCourseDto.setId(c.getId());
                     fullCourseDto.setTitle(c.getTitle());
