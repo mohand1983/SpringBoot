@@ -11,4 +11,5 @@ public interface CourseService<Course> {
 
 
     void delete(int courseId);
+    FullCourseDto findOne(int id);
 }

@@ -20,7 +20,7 @@ public class CourseServiceImpl implements  CourseService<Course> {
                 .map(c->{
                     /*
                     ModelMapper modelMapper = new ModelMapper();
-                    OrderDTO dto = modelMapper.map(order, OrderDTO.class);
+                    FullCourseDto dto = modelMapper.map(c, FullCourseDto.class);
                     * */
                     FullCourseDto fullCourseDto= new FullCourseDto();
                     fullCourseDto.setId(c.getId());
@@ -50,6 +50,48 @@ public class CourseServiceImpl implements  CourseService<Course> {
                     return fullCourseDto;
                 })
                 .collect(Collectors.toList());
+    }
+
+    /*
+        public List<FullCourseDto> findAll() {
+        var fullCourses = repository.findAll()
+                .stream()
+                .map(c -> {
+                    var fullCourseDto = modelMapper.map(c, FullCourseDto.class);
+                    return fullCourseDto;
+                })
+                .collect(Collectors.toList());
+        // Compute media time
+        for (FullCourseDto fc : fullCourses) {
+            for (ModuleDto m : fc.getModules()) {
+                var medias = m.getMedias();
+                m.setTotalTime(convertToTime(medias));
+            }
+        }
+        return fullCourses;
+    }
+
+    @Override
+    public FullCourseDto findOne(int id) {
+       return repository.findById(id)
+               .map((c) -> {
+                    var fullCourseDto =  modelMapper.map(c, FullCourseDto.class);
+                    return fullCourseDto;
+               })
+               .orElseThrow();
+
+    }
+     */
+
+    @Override
+    public FullCourseDto findOne(int id) {
+        return repository.findById(id)
+                .map((c) -> {
+                    var fullCourseDto =  modelMapper.map(c, FullCourseDto.class);
+                    return fullCourseDto;
+                })
+                .orElseThrow();
+
     }
 
     public Course add(FullCourseDto course){
